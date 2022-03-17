@@ -67,3 +67,14 @@ taint를 설정한 노드에는 pod이 스케쥴링 되지 않음.
 
 taint 설정된 노드에 pod를 스케쥴링 하려면 toleration을 이용해서 지정해 주어야함.
 
+## drain
+
+```bash
+kubectl drain node/mynode --ignore-daemonsets
+```
+
+#q Cluster maintenance
+
+
+
+# Security
