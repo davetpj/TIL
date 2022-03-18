@@ -461,6 +461,7 @@ containers:
 <br>
 <br>
 The pod is created with multiple containers and security contexts defined at the Pod and Container level.
+
 ```bash
 $ ls
 $ cat multi-pod.yaml
@@ -480,10 +481,12 @@ spec:
 <br>
 
 Note: Only make the necessary changes. Do not modify the name of the pod.
+
 ```
 $ kubectl delete po/ubuntu-sleeper
 $ vi ubuntu-sleeper.yaml 
 ```
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -497,9 +500,11 @@ spec:
       capabilities:
         add: ["SYS_TIME"] 
 ```
+
 ```
 $ kubectl apply -f ubuntu-sleeper.yaml
 ```
+
 [Reference](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#:~:text=apiVersion%3A%20v1%0Akind%3A%20Pod%0Ametadata%3A%0A%20%20name%3A%20security%2Dcontext%2Ddemo%2D4%0Aspec%3A%0A%20%20containers%3A%0A%20%20%2D%20name%3A%20sec%2Dctx%2D4%0A%20%20%20%20image%3A%20gcr.io/google%2Dsamples/node%2Dhello%3A1.0%0A%20%20%20%20securityContext%3A%0A%20%20%20%20%20%20capabilities%3A%0A%20%20%20%20%20%20%20%20add%3A%20%5B%22NET_ADMIN%22%2C%20%22SYS_TIME%22%5D)
 
 <br>
@@ -508,10 +513,12 @@ $ kubectl apply -f ubuntu-sleeper.yaml
 <br>
 <br>
 Note: Only make the necessary changes. Do not modify the name of the pod.
+
 ```
 $ kubectl delete po/ubuntu-sleeper
 $ vi ubuntu-sleeper.yaml
 ```
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -529,3 +536,72 @@ spec:
 <br>
 
 ### Practice Test Network Policies
+
+1. How many network policies do you see in the environment?
+<br>
+<br>
+We have deployed few web applications, services and network policies. Inspect the environment.
+
+```
+$ kubectl get networkpolicy
+
+or
+
+$ kubectl get netpol
+```
+
+<br>
+
+2. What is the name of the Network Policy?
+
+```
+$ kubectl get netpol
+```
+
+<br>
+
+3. Which pod is the Network Policy applied on?
+
+```
+$ kubectl get netpol
+```
+```
+# output
+NAME             POD-SELECTOR   AGE
+payroll-policy   name=payroll   11m
+```
+```
+$ kubectl get po --show-labels
+```
+
+<br>
+
+4. What type of traffic is this Network Policy configured to handle?
+
+```
+$ kubectl describe netpol/payroll-policy
+```
+
+<br>
+
+5. What is the impact of the rule configured on this Network Policy?
+
+```
+ans : Traffic Internal POD to payroll is allowed
+```
+
+<br>
+
+6. What is the impact of the rule configured on this Network Policy?
+
+```
+Internal POD can access 8080 ...
+```
+
+7. 
+
+```
+Only Internal...
+```
+
+8. 
