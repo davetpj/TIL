@@ -73,8 +73,4 @@ taint 설정된 노드에 pod를 스케쥴링 하려면 toleration을 이용해�
 kubectl drain node/mynode --ignore-daemonsets
 ```
 
-# Cluster maintenance
-
-
-
-
+# Cluster maintenancess
