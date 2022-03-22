@@ -116,10 +116,101 @@ $ kubectl edit po/redis
 ```
 
 ```yaml
+...
 spec:
   containers:
   - image: redis # redis123 -> redis
+...
 ```
 
 <br>
+
+### Practice Test - ReplicaSets
+
+1. How many PODs exist on the system?
+In the current(default) namespace.
+
+```
+$ kubectl get po
+```
+
+<br>
+
+2. How many ReplicaSets exist on the system?
+In the current(default) namespace.
+
+```
+$ kubectl get rs
+```
+
+<br>
+
+3. How about now? How many ReplicaSets do you see?
+We just made a few changes!
+
+```
+$ kubectl get rs
+```
+
+<br>
+
+4. How many PODs are DESIRED in the new-replica-set?
+
+```
+$ kubectl get rs
+```
+
+<br>
+
+5. What is the image used to create the pods in the new-replica-set? 
+   
+```
+$ kubectl describe rs/new-replica-set |grep Image
+```
+
+<br>
+
+6. How many PODs are READY in the new-replica-set?
+
+```
+$ kubectl get po
+```
+
+<br>
+
+7. Why do you think the PODs are not ready?
+
+```
+ans : The image BUSYBOX777 doesn't exist
+```
+
+<br>
+
+8. Delete any one of the 4 PODs
+    
+```
+$ kubectl delete po/<pod-name>
+```
+
+<br>
+
+9. How many PODs exist now?
+
+```
+$ kubectl get po
+```
+
+<br>
+
+10. Why are there still 4 PODs, even after you deleted one?
+
+```
+ans : ReplicaSet ensures that desired number of PODs always run
+```
+
+11. Create a ReplicaSet using the replicaset-definition-1.yaml file located at /root/.
+There is an issue with the file, so try to fix it.
+
+```
+```
 
