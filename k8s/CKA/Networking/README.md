@@ -97,6 +97,8 @@ $ netstat -anp | grep etcd
 
 ### Practice Test CNI Weave
 
+<br>
+
 1. Inspect the kubelet service and identify the network plugin configured for Kubernetes.
 
 ```
@@ -159,3 +161,27 @@ Replace the default IP address and subnet of weave-net to the 10.50.0.0/16. Plea
 $ ???
 ```
 
+### Deploy Network Solution
+
+<br>
+
+1. In this practice test we will install weave-net POD networking solution to the cluster. Let us first inspect the setup. We have deployed an application called app in the default namespace. What is the state of the pod?
+
+```
+$ kubectl get po
+```
+
+<br>
+
+2. Inspect why the POD is not running.
+
+```
+$ kubectl describe po/app
+```
+
+3. Deploy weave-net networking solution to the cluster.
+Replace the default IP address and subnet of weave-net to the 10.50.0.0/16. Please check the official weave installation and configuration guide which is available at the top right panel.
+
+```
+$ ???
+```
