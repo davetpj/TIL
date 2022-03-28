@@ -1,3 +1,3 @@
 - peer-to-peer
 - mac
-- 
+- 리틀엔디안 빅엔디안
