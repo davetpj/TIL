@@ -158,3 +158,64 @@ $ kubectl apply -f ./
 ```
 
 <br>
+
+### Practice Test - Taints and Tolerations 
+
+<br>
+
+1. How many nodes exist on the system?
+Including the controlplane node.
+
+```
+$ kubectl get node
+```
+
+<br>
+
+2. Do any taints exist on node01 node?
+
+```
+kubectl describe node/node01 | grep -i taints
+```
+
+<br>
+
+3. Create a taint on node01 with key of spray, value of mortein and effect of NoSchedule
+
+```
+$ kubectl taint nodes node01 spray=mortein:NoSchedule
+```
+
+<br>
+
+4. Create a new pod with the nginx image and pod name as mosquito.
+
+```
+$ kubectl run mosquito --image=nginx
+```
+
+<br>
+
+5. What is the state of the POD?
+
+```
+ans : Pending
+```
+
+<br>
+
+6. Why do you think the pod is in a pending state?
+
+```
+ans : POD Mosquito cannot tolerate taint Mortein
+```
+
+7. Create another pod named bee with the nginx image, which has a toleration set to the taint mortein.
+
+```
+$ vi
+```
+
+```yaml
+
+```
