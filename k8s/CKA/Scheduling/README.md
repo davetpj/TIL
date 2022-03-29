@@ -219,3 +219,79 @@ $ vi
 ```yaml
 
 ```
+
+<br>
+
+### Practice Test Resource Limits
+
+<br>
+
+1. A pod called rabbit is deployed. Identify the CPU requirements set on the Pod. in the current(default) namespace
+
+```
+$ kubectl get po/rabbit 
+```
+
+<br>
+
+2. Delete the rabbit Pod.
+Once deleted, wait for the pod to fully terminate.
+
+```
+$ kubectl delete po/rabbit
+```
+
+<br>
+
+3. Another pod called elephant has been deployed in the default namespace. It fails to get to a running state. Inspect this pod and identify the Reason why it is not running.
+
+```
+$ kubectl get po
+$ kubectl describe po/elephant
+```
+
+<br>
+
+5. The elephant pod runs a process that consume 15Mi of memory. Increase the limit of the elephant pod to 20Mi.
+Delete and recreate the pod if required. Do not modify anything other than the required fields.
+
+```
+$ kubectl get po/elephant -o yaml > elephant.yaml
+
+$ kubectl delete po/elephant
+
+$ vi elephant.yaml
+```
+
+```yaml
+...
+resources:
+    limits:
+        memory: 20Mi
+    requests:
+        memory: 5Mi
+...
+```
+
+```
+$ kubectl apply -f elephant.yaml
+```
+
+<br>
+
+6. Inspect the status of POD. Make sure it's running
+
+```
+$ kubectl get po
+```
+
+7. Delete the elephant Pod.
+Once deleted, wait for the pod to fully terminate.
+
+```
+$ kubectl delete po/elephant
+```
+
+<br>
+
+### Practice Test DaemonSets
