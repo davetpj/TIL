@@ -295,3 +295,75 @@ $ kubectl delete po/elephant
 <br>
 
 ### Practice Test DaemonSets
+
+<br>
+
+1. How many DaemonSets are created in the cluster in all namespaces?
+Check all namespaces
+
+```
+$ kubectl get daemonsets -A
+```
+
+<br>
+
+2. Which namespace are the DaemonSets created in?
+
+```
+$ kubectl get daemonsets -A
+```
+
+<br>
+
+3. Which of the below is a DaemonSet?
+
+```
+$ kubectl get all -A
+```
+
+<br>
+
+4. On how many nodes are the pods scheduled by the DaemonSet kube-proxy
+
+```
+$ kubectl describe daemonset kube-proxy -n=kube-system
+```
+
+<br>
+
+5. What is the image used by the POD deployed by the kube-flannel-ds DaemonSet?
+
+```
+$ kubectl describe daemonset kube-flannel-ds -n=kube-system | grep -i image
+```
+
+<br>
+
+6. Deploy a DaemonSet for FluentD Logging
+
+```
+$ kubectl create deployment elasticsearch --image=k8s.gcr.io/fluentd-elasticsearch:1.20 -n kube-system --dry-run=client -o yaml > fluentd.yaml
+```
+
+``` yaml
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: elasticsearch
+  name: elasticsearch
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      containers:
+      - image: k8s.gcr.io/fluentd-elasticsearch:1.20
+        name: fluentd-elasticsearch
+```
