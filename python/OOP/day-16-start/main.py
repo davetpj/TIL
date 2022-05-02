@@ -1,26 +1,27 @@
-# # import another_module
-# # print(another_module.another_variable)
-#
-# from turtle import Turtle, Screen
-#
-# timmy = Turtle()
-# print(timmy)
-#
-# timmy.shape("turtle")
-# timmy.color("coral")
-# timmy.forward(100)
-#
-# my_screen = Screen()
-# print(my_screen.canvheight)
-# my_screen.exitonclick()
+from menu import Menu, MenuItem
+from coffee_maker import CoffeeMaker
+from money_machine import MoneyMachine
 
-from prettytable import PrettyTable
+coffee_maker = CoffeeMaker()
+money_machine = MoneyMachine()
+menu = Menu()
 
-table = PrettyTable()
+while True:
+    options = menu.get_items()
+    user_decided = input(f"What would you like? ({options}):")
+    print(user_decided)
 
-table.add_column("Pokemon Name", ['Pikachu', 'Squirtle', 'Charmander'])
-table.add_column("Type", ['Electric', 'water', 'Fire'])
+    if user_decided == "off":
+        break
+    elif user_decided == "report":
+        # show current resources
+        coffee_maker.report()
+        money_machine.report()
+    elif user_decided in menu.get_items():
+        drink = menu.find_drink(user_decided)
+        if coffee_maker.is_resource_sufficient(drink):
+            if money_machine.make_payment(drink.cost):
+                coffee_maker.make_coffee(drink)
+    else:
+        print("error")
 
-table.align = "l"
-
-print(table)
