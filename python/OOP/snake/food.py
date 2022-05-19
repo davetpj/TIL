@@ -18,3 +18,10 @@ class Food(Turtle):
         random_x = random.randint(-280, 280)
         random_y = random.randint(-280, 280)
         self.goto(random_x, random_y)
+
+
+my_list = [i for i in range(10)]
+
+my_list = []
+for i in range(10):
+    my_list.append(i)
